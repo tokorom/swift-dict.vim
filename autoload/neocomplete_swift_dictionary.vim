@@ -55,6 +55,9 @@ function! neocomplete_swift_dictionary#configure_dictionary_source() "{{{
         \ neocomplete#get_keyword_pattern_end(filetype, 'dictionary'))[0]
       endif
     endfunction
+
+    let dictionary_source.keyword_patterns = {}
+    let dictionary_source.keyword_patterns.swift = '\h[():_0-9a-zA-Z]*'
   endif
 endfunction "}}}
 
