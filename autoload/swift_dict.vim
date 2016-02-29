@@ -49,21 +49,10 @@ function! swift_dict#configure_dictionary_source() "{{{
   if has_key(sources, 'dictionary')
     let dictionary_source = sources['dictionary']
 
-    " get_complete_position
-    function! dictionary_source.get_complete_position(context)
-      let filetype = neocomplete#get_context_filetype()
-      if 'swift' == filetype
-        let line = a:context.input
-        let idx = match(line, '\h\w*\W*$')
-        return idx
-      else
-        return neocomplete#helper#match_word(a:context.input,
-        \ neocomplete#get_keyword_pattern_end(filetype, 'dictionary'))[0]
-      endif
-    endfunction
-
-    let dictionary_source.keyword_patterns = {}
-    let dictionary_source.keyword_patterns.swift = '\h[():_0-9a-zA-Z]*'
+    if !exists('dictionary_source.keyword_patterns')
+      let dictionary_source.keyword_patterns = {}
+    endif
+    let dictionary_source.keyword_patterns.swift = '\h[ ():_0-9a-zA-Z]*'
   endif
 endfunction "}}}
 
