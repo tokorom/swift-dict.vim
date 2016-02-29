@@ -3,7 +3,7 @@ swift-dict.vim
 
 swift keyword dictionary for vim
 
-<p align="center"><img src="https://dl.dropboxusercontent.com/u/10351676/images/GitHub/swift-dict.vim.gif"/></p>
+<p align="center"><img src="https://raw.githubusercontent.com/tokorom/swift-dict.vim/assets/assets/swift_vim_complete.gif"/></p>
 
 ## .vimrc Samples
 
