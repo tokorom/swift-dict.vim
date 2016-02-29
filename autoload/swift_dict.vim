@@ -26,28 +26,22 @@
 
 let s:spath = expand('<sfile>:p')
 
-function! swift_dict#dict_path() "{{{
+function! swift_dict#setup_dict_path() "{{{
   let spath = s:spath
-  let dictpath = spath[0 : strridx(spath, 'autoload') - 1] . 'dict/swift.dict'
-
-  let s:dictpath = dictpath
-  return s:dictpath
+  let s:dictpath = spath[0 : strridx(spath, 'autoload') - 1] . 'dict/swift.dict'
 endfunction "}}}
 
 function! swift_dict#configure_swift_dict() "{{{
-  let dictpath = swift_dict#dict_path()
-  autocmd FileType swift let &dictionary = dictpath
+  call swift_dict#setup_dict_path()
+  autocmd FileType swift let &dictionary = s:dictpath
 endfunction "}}}
 
 function! swift_dict#configure_swift_dict_for_neocomplete() "{{{
   if !exists('g:neocomplete#sources#dictionary#dictionaries')
     let g:neocomplete#sources#dictionary#dictionaries = {}
   endif
-  let dictpath = swift_dict#dict_path()
-  let g:neocomplete#sources#dictionary#dictionaries.swift = dictpath
-
-  let s:dictpath = dictpath
-  autocmd FileType swift let &dictionary = s:dictpath
+  call swift_dict#setup_dict_path()
+  let g:neocomplete#sources#dictionary#dictionaries.swift = s:dictpath
 endfunction "}}}
 
 function! swift_dict#configure_dictionary_source() "{{{
