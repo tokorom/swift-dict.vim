@@ -3,7 +3,7 @@ neocomplete-swift-dictionary
 
 swift keyword dictionary for vim and neocomplete
 
-<p align="center"><img src="https://dl.dropboxusercontent.com/u/10351676/images/GitHub/neocomplete_swift_dict_sample.gif"/></p>
+<p align="center"><img src="https://dl.dropboxusercontent.com/u/10351676/images/GitHub/swift-dict.vim.gif"/></p>
 
 ## .vimrc Samples
 
