@@ -1,4 +1,4 @@
-" neocomplete-swift-dictionary - neocomplete settings for swift's dictionary {{{
+" swift-dict - swift's dictionary {{{
 " Version: 0.0.1
 " Copyright (C) 2014 Yuta ToKoRo <https://github.com/tokorom/>
 " Last Modified: April 27, 2014
@@ -26,19 +26,31 @@
 
 let s:spath = expand('<sfile>:p')
 
-function! neocomplete_swift_dictionary#configure_swift_dict() "{{{
+function! swift_dict#dict_path() "{{{
+  let spath = s:spath
+  let dictpath = spath[0 : strridx(spath, 'autoload') - 1] . 'dict/swift.dict'
+
+  let s:dictpath = dictpath
+  return s:dictpath
+endfunction "}}}
+
+function! swift_dict#configure_swift_dict() "{{{
+  let dictpath = swift_dict#dict_path()
+  autocmd FileType swift let &dictionary = dictpath
+endfunction "}}}
+
+function! swift_dict#configure_swift_dict_for_neocomplete() "{{{
   if !exists('g:neocomplete#sources#dictionary#dictionaries')
     let g:neocomplete#sources#dictionary#dictionaries = {}
   endif
-  let spath = s:spath
-  let dictpath = spath[0 : strridx(spath, 'autoload') - 1] . 'dict/swift.dict'
+  let dictpath = swift_dict#dict_path()
   let g:neocomplete#sources#dictionary#dictionaries.swift = dictpath
 
   let s:dictpath = dictpath
   autocmd FileType swift let &dictionary = s:dictpath
 endfunction "}}}
 
-function! neocomplete_swift_dictionary#configure_dictionary_source() "{{{
+function! swift_dict#configure_dictionary_source() "{{{
   let sources = neocomplete#helper#get_sources_list()
   if has_key(sources, 'dictionary')
     let dictionary_source = sources['dictionary']
@@ -61,7 +73,7 @@ function! neocomplete_swift_dictionary#configure_dictionary_source() "{{{
   endif
 endfunction "}}}
 
-function! neocomplete_swift_dictionary#remove_unuse_sources_for_swift() "{{{
+function! swift_dict#remove_unuse_sources_for_swift() "{{{
   let sources = neocomplete#helper#get_sources_list()
   let unuse_sources = ['member', 'tag', 'syntax', 'include', 'vim', 'omni']
   for source_name in unuse_sources

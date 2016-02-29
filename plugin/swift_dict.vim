@@ -1,4 +1,4 @@
-" neocomplete-swift-dictionary - neocomplete settings for swift's dictionary {{{
+" swift-dict - swift's dictionary {{{
 " Version: 0.0.1
 " Copyright (C) 2014 Yuta ToKoRo <https://github.com/tokorom/>
 " Last Modified: April 26, 2014
@@ -24,17 +24,25 @@
 " }}}
 " }}}
 
-if exists('g:loaded_neocomplete_swift_dictionary') "{{{
+if exists('g:loaded_swift_dict') "{{{
   finish
 endif "}}}
 
-call neocomplete_swift_dictionary#configure_swift_dict()
-call neocomplete_swift_dictionary#configure_dictionary_source()
-call neocomplete_swift_dictionary#remove_unuse_sources_for_swift()
+if !exists('g:swift_dict_with_neocomplete') "{{{
+  let g:swift_dict_with_neocomplete = 0
+endif "}}}
+
+call swift_dict#configure_swift_dict()
+
+if g:swift_dict_with_neocomplete == 1
+  call swift_dict#configure_swift_dict_for_neocomplete()
+  call swift_dict#configure_dictionary_source()
+  call swift_dict#remove_unuse_sources_for_swift()
+endif
 
 " Fin. "{{{
 
-let g:loaded_neocomplete_ios_dictionary = 1
+let g:loaded_swift_dict = 1
 
 " __END__
 " vim: foldmethod=marker
