@@ -22,3 +22,9 @@ NeoBundle 'tokorom/swift-dict.vim'
 
 let g:swift_dict_with_neocomplete = 1
 ```
+
+### with completor.vim
+
+```vim
+call swift_dict#configure_swift_dict_for_completor()
+```
