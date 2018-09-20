@@ -36,6 +36,18 @@ function! swift_dict#configure_swift_dict() "{{{
   autocmd FileType swift let &dictionary = s:dictpath
 endfunction "}}}
 
+function! swift_dict#configure_swift_dict_for_completor() "{{{
+  if !exists('g:completor_shell#shell_commands')
+    let g:completor_shell#shell_commands = {}
+  endif
+  if !has_key(g:completor_shell#shell_commands, 'swift')
+    g:completor_shell#shell_commands['swift'] = []
+  endif
+  call swift_dict#setup_dict_path()
+  let command = "grep '^${token}' " . s:dictpath
+  call add(g:completor_shell#shell_commands['swift'], command)
+endfunction "}}}
+
 function! swift_dict#configure_swift_dict_for_neocomplete() "{{{
   if !exists('g:neocomplete#sources#dictionary#dictionaries')
     let g:neocomplete#sources#dictionary#dictionaries = {}

@@ -28,11 +28,21 @@ if exists('g:loaded_swift_dict') "{{{
   finish
 endif "}}}
 
-if !exists('g:swift_dict_with_neocomplete') "{{{
-  let g:swift_dict_with_neocomplete = 0
-endif "}}}
+
 
 call swift_dict#configure_swift_dict()
+
+if !exists('g:swift_dict_with_comletor')
+  let g:swift_dict_with_comletor = 0
+endif
+
+if g:swift_dict_with_comletor == 1
+  call swift_dict#configure_swift_dict_for_completor()
+endif
+
+if !exists('g:swift_dict_with_neocomplete')
+  let g:swift_dict_with_neocomplete = 0
+endif
 
 if g:swift_dict_with_neocomplete == 1
   call swift_dict#configure_swift_dict_for_neocomplete()
