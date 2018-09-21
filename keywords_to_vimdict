@@ -1,0 +1,6 @@
+#!/bin/sh
+
+KEYWORDS_FILE="keywords/Apple_API_Reference/keywords.txt"
+DICT_FILE="dict/swift.dict"
+
+cp ${KEYWORDS_FILE} ${DICT_FILE}
