@@ -28,3 +28,7 @@ let g:swift_dict_with_neocomplete = 1
 ```vim
 call swift_dict#configure_swift_dict_for_completor()
 ```
+
+## Use fuzzy find
+
+- This plugin support fuzzy find with [completor.vim](https://github.com/maralla/completor.vim) and [fzy](https://github.com/jhawthorn/fzy)
