@@ -41,7 +41,7 @@ function! swift_dict#configure_swift_dict_for_completor() "{{{
     let g:completor_shell#shell_commands = {}
   endif
   call swift_dict#setup_dict_path()
-  if executable('fyz')
+  if executable('fzy')
     let command = "cat " .  s:dictpath . " | fzy -e ${token}"
   else
     let command = "grep '^${token}' " . s:dictpath
