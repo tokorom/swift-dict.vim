@@ -42,18 +42,10 @@ function! swift_dict#configure_swift_dict_for_completor() "{{{
   endif
   call swift_dict#setup_dict_path()
 
-  let useFuzzyFind = 0
-
   if executable('fzy')
-    let prev = strpart(getline('.'), 0, col('.') - 1)
-    let cword = matchstr(prev, '\k\+$')
-    if len(cword) > 4
-      let useFuzzyFind = 1
-    endif
-  end
-
-  if useFuzzyFind
-    let command = "cat " .  s:dictpath . " | fzy -e ${token}"
+    let command = "[ $(echo ${token} | awk '{n+=length($0)} END{print n}') -ge 4 ]"
+    \ . " && " . "(cat " .  s:dictpath . " | fzy -e ${token} | head -1000)"
+    \ . " || " . "(grep '^${token}' " . s:dictpath . ")"
   else
     let command = "grep '^${token}' " . s:dictpath
   endif
