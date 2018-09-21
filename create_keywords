@@ -1,0 +1,17 @@
+#!/bin/sh
+
+DOCNAME="Apple_API_Reference"
+IDXFILE="/Users/tokorom/Desktop/${DOCNAME}.docset/Contents/Resources/docSet.dsidx"
+
+KEYWORDS_DIR="keywords"
+KEYWORDS_FILE="keywords.txt"
+
+command mkdir -p ${KEYWORDS_DIR}/${DOCNAME}
+command pushd ${KEYWORDS_DIR}/${DOCNAME}
+mkdir -p tmp
+
+command sqlite3 ${IDXFILE} 'SELECT name from searchIndex' | sort | uniq > tmp/${KEYWORDS_FILE}
+command ggrep -ohP '^[a-zA-Z0-9]\w+\S*$' tmp/${KEYWORDS_FILE} > ${KEYWORDS_FILE}
+
+rm -r tmp
+command popd
