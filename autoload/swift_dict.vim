@@ -41,7 +41,18 @@ function! swift_dict#configure_swift_dict_for_completor() "{{{
     let g:completor_shell#shell_commands = {}
   endif
   call swift_dict#setup_dict_path()
-  if executable('fzy') && (len(expand('<cword>')) > 4)
+
+  let useFuzzyFind = 0
+
+  if executable('fzy')
+    let prev = strpart(getline('.'), 0, col('.') - 1)
+    let cword = matchstr(prev, '\k\+$')
+    if len(cword) > 4
+      let useFuzzyFind = 1
+    endif
+  end
+
+  if useFuzzyFind
     let command = "cat " .  s:dictpath . " | fzy -e ${token}"
   else
     let command = "grep '^${token}' " . s:dictpath
