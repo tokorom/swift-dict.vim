@@ -1,7 +1,7 @@
 #!/bin/sh
 
 DOCNAME="Apple_API_Reference"
-IDXFILE="/Users/tokorom/Desktop/${DOCNAME}.docset/Contents/Resources/docSet.dsidx"
+IDXFILE="~/Library/Application Support/Dash/DocSets/${DOCNAME}.docset/Contents/Resources/docSet.dsidx"
 
 KEYWORDS_DIR="keywords"
 KEYWORDS_FILE="keywords.txt"
