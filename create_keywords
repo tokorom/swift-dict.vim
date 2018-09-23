@@ -1,7 +1,7 @@
 #!/bin/sh
 
 DOCNAME="Apple_API_Reference"
-IDXFILE="~/Library/Application Support/Dash/DocSets/${DOCNAME}.docset/Contents/Resources/docSet.dsidx"
+IDXFILE="/Users/tokorom/Library/Application Support/Dash/DocSets/${DOCNAME}/${DOCNAME}.docset/Contents/Resources/docSet.dsidx"
 
 KEYWORDS_DIR="keywords"
 KEYWORDS_FILE="keywords.txt"
@@ -10,7 +10,7 @@ command mkdir -p ${KEYWORDS_DIR}/${DOCNAME}
 command pushd ${KEYWORDS_DIR}/${DOCNAME}
 mkdir -p tmp
 
-command sqlite3 ${IDXFILE} 'SELECT name from searchIndex' | sort | uniq > tmp/${KEYWORDS_FILE}
+command sqlite3 "${IDXFILE}" 'SELECT name FROM searchIndex WHERE path LIKE "%<dash_entry_language=swift>%"' | sort | uniq > tmp/${KEYWORDS_FILE}
 command ggrep -ohP '^[a-zA-Z0-9]\w+\S*$' tmp/${KEYWORDS_FILE} > ${KEYWORDS_FILE}
 
 rm -r tmp
