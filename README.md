@@ -18,19 +18,18 @@ set complete+=k
 ### with neocomplete
 
 ```vim
-NeoBundle 'tokorom/swift-dict.vim'
-
 let g:swift_dict_with_neocomplete = 1
 ```
 
-### with completor.vim
+### with asyncomplete.vim
+
+- Install [asyncomplete](https://github.com/prabirshrestha/asyncomplete.vim)
+- Install [asyncomplete-dictionary](https://github.com/tokorom/asyncomplete-dictionary.vim)
 
 ```vim
-call swift_dict#configure_swift_dict_for_completor()
+call asyncomplete#register_source({
+  \ 'name': 'dictionary',
+  \ 'allowlist': ['*'],
+  \ 'completor': function('asyncomplete#sources#dictionary#completor'),
+  \ })
 ```
-
-## Use fuzzy find
-
-- This plugin support fuzzy find with [completor.vim](https://github.com/maralla/completor.vim) and [fzy](https://github.com/jhawthorn/fzy)
-
-- Required: 5 or more characters token
